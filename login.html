@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Donat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #ffe6e6;
+            overflow: hidden;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 320px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-container::before,
+        .login-container::after {
+            content: "";
+            position: absolute;
+            background: url('https://www.svgrepo.com/show/1935/donut.svg') no-repeat center;
+            background-size: cover;
+            opacity: 0.1;
+        }
+
+        .login-container::before {
+            top: -50px;
+            left: -50px;
+            width: 100px;
+            height: 100px;
+        }
+
+        .login-container::after {
+            bottom: -50px;
+            right: -50px;
+            width: 120px;
+            height: 120px;
+        }
+
+        h2 {
+            margin-bottom: 1.5em;
+            color: #ff6f61;
+            font-size: 2em;
+            position: relative;
+        }
+
+        .form-group {
+            margin-bottom: 1.2em;
+            text-align: left;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5em;
+            color: #ff6f61;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 0.8em;
+            margin: 0.5em 0;
+            border: 2px solid #ffd1dc;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #ff6f61;
+            outline: none;
+        }
+
+        .error-message {
+            color: #ff4d4d;
+            font-size: 0.85em;
+            position: absolute;
+            top: 100%;
+            left: 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.8em;
+            background-color: #ff6f61;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #e95b55;
+            transform: scale(1.05);
+        }
+
+        .signup-link {
+            margin-top: 1.2em;
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        .signup-link a {
+            color: #ff6f61;
+            text-decoration: none;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>🍩 Donat Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <p class="error-message" id="emailError"></p>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <p class="error-message" id="passwordError"></p>
+            </div>
+            <button type="submit">Login</button>
+            <p class="signup-link">Belum punya akun? <a href="register.html">Daftar di sini</a></p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Ambil elemen input dan error message
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+
+            let isValid = true;
+            emailError.textContent = '';
+            passwordError.textContent = '';
+
+            // Validasi email
+            if (!email.value) {
+                emailError.textContent = 'Email tidak boleh kosong';
+                isValid = false;
+            } else if (!/\S+@\S+\.\S+/.test(email.value)) {
+                emailError.textContent = 'Format email tidak valid';
+                isValid = false;
+            }
+
+            // Validasi password
+            if (!password.value) {
+                passwordError.textContent = 'Password tidak boleh kosong';
+                isValid = false;
+            } else if (password.value.length < 6) {
+                passwordError.textContent = 'Password harus minimal 6 karakter';
+                isValid = false;
+            }
+
+            // Jika validasi lolos, submit form
+            if (isValid) {
+                alert('Login berhasil! 🍩');
+                window.location.href = "index.html"; // Mengarahkan ke index.html
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Donat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffe6e6;
+        }
+
+        .register-container {
+            margin-top: 50px;
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 80%; /* Diubah dari 350px ke 80% */
+            max-width: 500px; /* Memberikan batas maksimum */
+            text-align: center;
+            position: relative;
+        }
+
+        .register-container::before,
+        .register-container::after {
+            content: "";
+            position: absolute;
+            background: url('https://www.svgrepo.com/show/1935/donut.svg') no-repeat center;
+            background-size: cover;
+            opacity: 0.1;
+        }
+
+        .register-container::before {
+            top: -50px;
+            left: -50px;
+            width: 120px;
+            height: 120px;
+        }
+
+        .register-container::after {
+            bottom: -50px;
+            right: -50px;
+            width: 140px;
+            height: 140px;
+        }
+
+        h2 {
+            margin-bottom: 1.5em;
+            color: #ff6f61;
+            font-size: 2.2em; /* Sedikit diperbesar */
+            position: relative;
+        }
+
+        .form-group {
+            margin-bottom: 1.5em;
+            text-align: left;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5em;
+            color: #ff6f61;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 1em; /* Tinggi input diperbesar */
+            margin: 0.5em 0;
+            border: 2px solid #ffd1dc;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #ff6f61;
+            outline: none;
+        }
+
+        .error-message {
+            color: #ff4d4d;
+            font-size: 0.85em;
+            position: absolute;
+            top: 100%;
+            left: 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 1em; /* Tinggi tombol diperbesar */
+            background-color: #ff6f61;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #e95b55;
+            transform: scale(1.05);
+        }
+
+        .login-link {
+            margin-top: 1.5em;
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        .login-link a {
+            color: #ff6f61;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2>🍩 Register Donat</h2>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="name">Nama Lengkap</label>
+                <input type="text" id="name" name="name" required>
+                <p class="error-message" id="nameError"></p>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <p class="error-message" id="emailError"></p>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <p class="error-message" id="passwordError"></p>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Konfirmasi Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <p class="error-message" id="confirmPasswordError"></p>
+            </div>
+            <button type="submit">Daftar</button>
+            <p class="login-link">Sudah punya akun? <a href="login.html">Login di sini</a></p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Ambil elemen input dan error message
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirmPassword');
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+            let isValid = true;
+            nameError.textContent = '';
+            emailError.textContent = '';
+            passwordError.textContent = '';
+            confirmPasswordError.textContent = '';
+
+            // Validasi nama
+            if (!name.value.trim()) {
+                nameError.textContent = 'Nama tidak boleh kosong';
+                isValid = false;
+            }
+
+            // Validasi email
+            if (!email.value) {
+                emailError.textContent = 'Email tidak boleh kosong';
+                isValid = false;
+            } else if (!/\S+@\S+\.\S+/.test(email.value)) {
+                emailError.textContent = 'Format email tidak valid';
+                isValid = false;
+            }
+
+            // Validasi password
+            if (!password.value) {
+                passwordError.textContent = 'Password tidak boleh kosong';
+                isValid = false;
+            } else if (password.value.length < 6) {
+                passwordError.textContent = 'Password harus minimal 6 karakter';
+                isValid = false;
+            }
+
+            // Validasi konfirmasi password
+            if (confirmPassword.value !== password.value) {
+                confirmPasswordError.textContent = 'Password tidak cocok';
+                isValid = false;
+            }
+
+            // Jika validasi lolos, submit form
+            if (isValid) {
+                alert('Registrasi berhasil! 🍩');
+                // Simpan atau kirim data sesuai kebutuhan
+            }
+        });
+    </script>
+</body>
+</html>

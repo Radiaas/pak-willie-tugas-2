@@ -1,0 +1,2340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* General Navbar Styles */
+.container-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: white; /* Optional: make background solid */
+}
+
+.judul1 {
+    display: flex;
+    flex-direction: column;
+    color: #0B192C;
+    font-size: 23px;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.judul1 a{
+    text-decoration: none;
+    color: #0B192C;
+}
+
+.ul-navbar {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    list-style-type: none;
+    margin-right: 50px;
+    color: #0B192C;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.ul-navbar li {
+    margin-left: 30px;
+    color: #0B192C;
+}
+
+.ul-navbar li a {
+    text-decoration: none;
+    display: block;
+    color: #0B192C;
+}
+
+.ul-navbar li.Login a {
+    color: white;
+}
+
+.Login {
+    background-color: #1E3E62;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.Login a {
+    color: white;
+    font-weight: bold;
+}
+
+.Login:hover {
+    opacity: 0.8;
+}
+
+/* Burger Icon Styling */
+.burger-icon {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.burger-icon span {
+    width: 25px;
+    height: 3px;
+    background-color: #0B192C;
+    margin: 4px;
+    transition: all 0.3s ease;
+}
+
+/* Full-page video styles */
+.body1 {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.ul-navbar li:not(.Login) a:hover {
+    text-decoration: underline;
+}
+
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .ul-navbar {
+        display: none; /* Hide the nav items initially on mobile */
+        flex-direction: column;
+        position: fixed; /* Use fixed positioning to ensure the menu stays in place */
+        top: 0; /* Align it to the top of the screen */
+        right: 0; /* Align it to the right of the screen */
+        gap: 20px; /* Increase spacing between the items for better clarity */
+        padding-top: 80px; /* Add padding to push the items down from the top */
+        height: 50vh; /* Full-screen height to cover the entire screen */
+        background-color: white; /* Keep the background white for the menu */
+        width: 100%; /* Full width to cover the entire screen */
+        text-align: center; /* Center the text horizontally */
+        z-index: 1000; /* Make sure it's on top of other elements */
+        transition: all 0.3s ease; /* Smooth transition effect when opening */
+    }
+
+    .ul-navbar.show {
+        display: flex; /* Show the nav items when burger is clicked */
+    }
+
+    .burger-icon {
+        display: flex; /* Show burger icon on mobile */
+    }
+    
+    .container-navbar {
+        padding: 15px; /* Adjust navbar padding */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .ul-navbar {
+        margin-right: 20px; /* Adjust right margin for tablet view */
+    }
+}
+
+/* Default styles for larger screens (desktop) */
+.container-body {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.content1 video {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover; /* Ensures the video covers the whole area without distortion */
+    opacity: 0.6;
+}
+
+.content2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 35px;
+    transform: translate(-50%, -50%);
+    margin-top: 250px;
+    color: transparent; /* Menghilangkan warna fill */
+    -webkit-text-stroke: 1px white; /* Memberikan stroke warna putih */
+    text-align: center;
+    z-index: 1;
+}
+
+/* Tablet view (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+    .content2 {
+        font-size: 30px;
+        -webkit-text-stroke: 0.8px white;
+        margin-top: 0; /* Ensure it's perfectly centered */
+    }
+
+    .content1 video {
+        width: 100dvw;
+        height: 100vh; /* Keep video full height */
+        object-fit: cover;
+    }
+}
+
+/* Mobile and small tablets view (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    .container-body {
+        height: 100vh; /* Penuh di viewport */
+        position: relative;
+    }
+    
+    .content1 video {
+        width: 100%; /* Video mengambil lebar penuh layar */
+        height: 100vh;
+        object-fit: cover; /* Video tetap memenuhi layar dengan proporsi yang benar */
+    }
+    
+    .content2 {
+        position: absolute;
+        top: 50%; /* Posisikan teks di tengah layar */
+        left: 50%;
+        transform: translate(-50%, -50%); /* Pastikan teks berada tepat di tengah */
+        font-size: 20px; /* Sesuaikan ukuran font untuk layar kecil */
+        -webkit-text-stroke: 0.4px white;
+        text-align: center;
+        z-index: 10;
+        max-width: 90vw; /* Jaga agar teks tetap dalam batas lebar viewport */
+        white-space: normal; /* Izinkan teks untuk membungkus jika terlalu panjang */
+        padding: 10px; /* Tambahkan padding untuk menghindari tepi layar */
+    }
+}
+
+/* Small mobile view (max-width: 480px) */
+@media screen and (max-width: 480px) {
+    .container-body {
+        height: 100vh; /* Tetap penuh di layar */
+        position: relative;
+    }
+    
+    .content1 video {
+        width: 100%;
+        height: 100vh;
+        object-fit: cover; /* Video tetap memenuhi layar */
+    }
+    
+    .content2 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 18px; /* Sesuaikan ukuran font untuk layar kecil */
+        -webkit-text-stroke: 0.3px white;
+        text-align: center;
+        z-index: 10;
+        max-width: 100vw; /* Pastikan teks tidak melewati lebar viewport */
+        white-space: nowrap; /* Mencegah teks terpotong atau pecah */
+    }
+}
+
+/* Default Styles (Desktop/Laptop) */
+.container-body1 {
+    display: flex;
+    align-items: center; /* Vertical centering */
+    justify-content: center; /* Horizontal centering */
+    height: 100vh;
+    background: linear-gradient(to bottom, transparent 75%, #E1D7C6 25%);
+}
+
+.content3 {
+    position: relative;
+    display: inline-block;
+    padding: 180px;
+}
+
+.img-container1-1 {
+    width: 400px;
+}
+
+.img-container1-2 {
+    position: absolute;
+    bottom: 150px;
+    right: 130px;
+}
+
+.content4 {
+    margin-left: -80px;
+}
+
+.content4 h2 {
+    margin-bottom: 20px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #0B192C;
+}
+
+.content4 p {
+    margin-bottom: 15px;
+    width: 60%;
+    font-size: 20px;
+}
+
+.content4 button {
+    margin-top: 10px;
+    padding: 8px 20px;
+    background-color: #1E3E62;
+    border-radius: 20px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 15px;
+    width: 20%;
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: padding-right 0.3s ease;
+}
+
+.content4 button a {
+    text-decoration: none;
+    color: white;
+}
+
+.content4 button .arrow {
+    opacity: 0;
+    margin-left: 10px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateX(-5px);
+}
+
+.content4 button:hover .arrow {
+    opacity: 1;
+    transform: translate(10px, -50%);
+}
+
+.content4 button:hover {
+    padding-right: 40px; /* Adjusts padding to give space for the arrow */
+}
+
+
+/* Tablet Styles (Max-width: 768px) */
+@media (max-width: 768px) {
+    .container-body1 {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .content3 {
+        padding: 0;
+    }
+
+    .img-container1-1 {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .img-container1-2 {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .content4 {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .content4 p {
+        width: 100%;
+        font-size: 18px;
+    }
+
+    .content4 button {
+        width: 50%;
+    }
+}
+
+/* Mobile Styles (Max-width: 480px) */
+@media (max-width: 480px) {
+    .container-body1 {
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .content3 {
+        padding: 0;
+    }
+
+    .img-container1-1 {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .img-container1-2 {
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .content4 {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .content4 h2 {
+        font-size: 30px;
+    }
+
+    .content4 p {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .content4 button {
+        width: 70%;
+        font-size: 16px;
+    }
+}
+
+/* Styles for screen width between 1200px and 767px */
+@media (max-width: 1200px) and (min-width: 768px) {
+    .container-body1 {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content3 {
+        padding: 0;
+    }
+
+    .img-container1-1 {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .img-container1-2 {
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .content4 {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .content4 h2 {
+        font-size: 30px;
+    }
+
+    .content4 p {
+        text-align: center;
+        width: 600px;
+        font-size: 16px;
+    }
+
+    .content4 button {
+        width: 15%;
+        font-size: 16px;
+    }
+}
+
+.container-body2 {
+    text-align: center;
+    background-color: #E1D7C6;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content5 {
+    padding: 50px;
+    position: relative; /* Untuk memungkinkan penggunaan posisi absolut */
+    color: #0B192C;
+}
+
+#menu-section .content5 h2 {
+    font-size: 32px !important;
+    color: black;
+    font-weight: bold;
+}
+
+.content6 {
+    margin-top: -50px;
+    display: flex; /* Kembali ke flex untuk memastikan gambar tampil */
+    justify-content: center;
+    overflow: hidden; /* Sembunyikan bagian luar layar */
+    width: 100%;
+    height: 300px; /* Sesuaikan dengan tinggi gambar */
+    margin-bottom: 50px;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+.content6 img {
+    height: 100%; /* Atur tinggi gambar sesuai container */
+    width: auto; /* Rasio gambar tetap */
+    margin-right: 10px; /* Spasi antar gambar */
+    transition: transform 1s ease; /* Menambahkan transisi untuk smooth sliding */
+}
+
+
+.content6 img:hover {
+    box-shadow: 0px 12px 30px rgba(102, 50, 50, 0.25); /* Bayangan lebih terang saat hover */
+    border-radius: 20px;
+}
+
+.content7 {
+    display: flex;
+    justify-content: center; /* Menjaga tombol di tengah */
+    align-items: center;
+    width: 100%; /* Mengambil lebar penuh untuk pemusatan */
+}
+
+.menu-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #001f47;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 50px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.menu-button .arrow {
+    opacity: 0;
+    margin-left: 10px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateX(-5px);
+}
+
+.menu-button:hover .arrow {
+    opacity: 1;
+    transform: translate(60px, -50%);
+}
+
+.menu-button:hover {
+  padding-right: 30px; /* Adjusts padding to give space for the arrow */
+}
+
+.ellipse-container {
+    position: relative;
+    display: inline-block;
+    padding: 50px;
+}
+
+.ellipse {
+    display: block;
+}
+
+.arrow-container, .arrow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.arrow-left, .arrow-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+}
+
+.arrow-left img, .arrow-right img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.container-body3 {
+    position: relative;
+    width: 100%;
+    min-height: 80vh;
+    overflow: hidden;
+    background-color: #E1D7C6;
+    display: flex;
+    padding: 100px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+}
+
+.animated-text {
+    z-index: 2;
+    margin-top: 80px;
+    margin-bottom: 40px;
+}
+
+.animated-text h2 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #000;
+    animation: slideText 5s infinite alternate ease-in-out;
+}
+
+.decorative-images {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.random-image {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.top-left {
+    top: 180px;
+    left: 10px;
+}
+
+.top-right {
+    top: 170px;
+    right: 30px;
+}
+
+.bottom-center {
+    bottom: 80px;
+    left: 65%;
+    transform: translateX(-50%);
+}
+
+.card-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.card {
+    background-color: #faf7f1;
+    border-radius: 15px;
+    width: 350px;
+    height: 450px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.card img {
+    display: block;
+    margin: 0 auto;
+    height: 120px;
+    margin-bottom: 15px;
+}
+
+.card h4 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: black;
+}
+
+.card p {
+    font-size: 18px;
+    color: #6d6d6d;
+    margin-bottom: 0;
+}
+
+.read-more-button {
+    background-color: #1E3E62;
+    color: white;
+    text-decoration: none; /* Remove underline */
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: inline-block; /* Make the anchor behave like a block element */
+    width: 200px;
+    text-align: center; /* Center the text */
+    transition: background-color 0.3s ease;
+}
+
+.read-more-button:hover {
+    background-color: #2A4D7A;
+}
+
+/* Background Footer */
+.background-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+}
+
+/* Large Devices (Desktops) */
+@media (min-width: 1025px) {
+    .container-body3 {
+        padding: 100px 80px;
+    }
+
+    .card-wrapper {
+        gap: 30px;
+    }
+}
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .container-body3 {
+        padding: 50px 30px;
+    }
+
+    .animated-text h2 {
+        font-size: 32px;
+    }
+
+    .card {
+        width: 300px;
+        height: 400px;
+    }
+
+    .random-image {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    .container-body3 {
+        padding: 40px 20px;
+    }
+
+    .animated-text h2 {
+        font-size: 28px;
+    }
+
+    .card-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 90%;
+        height: auto;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .random-image {
+        width: 60px;
+        height: 60px;
+    }
+
+    .top-left {
+        top: 100px;
+        left: 10px;
+    }
+
+    .top-right {
+        top: 100px;
+        right: 10px;
+    }
+
+    .bottom-center {
+        bottom: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* Extra Small Devices */
+@media (max-width: 480px) {
+    .animated-text h2 {
+        font-size: 24px;
+    }
+
+    .read-more-button {
+        width: 150px;
+        font-size: 16px;
+    }
+
+    .random-image {
+        width: 50px;
+        height: 50px;
+    }
+
+    .top-left {
+        top: 80px;
+    }
+
+    .top-right {
+        top: 80px;
+    }
+
+    .bottom-center {
+        bottom: 100px;
+    }
+}
+
+/* Base styles: Default for desktop */
+.container-body6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content horizontally */
+    align-items: center;     /* Center content vertically */
+    color: white;            /* White text */
+    position: relative;      /* Allows absolute positioning of arrows */
+}
+
+.container-body6 img {
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.divcontainer6 {
+    margin-top: 70px;
+    padding: 50px 0;
+    background-color: #1a3b60;
+    height: 80vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 0; /* Letakkan di bawah navbar */
+}
+
+.content20 {
+    text-align: center;
+}
+
+.content20 h2 {
+    font-size: 48px;  /* Default heading size for desktop */
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    color: transparent;
+    -webkit-text-stroke: 0.5px white;
+}
+
+.content20 img {
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.content20 p {
+    padding: 20px;
+    border-radius: 8px;
+    line-height: 1.6;
+    color: #FFFFFF;
+    font-size: 24px;
+    font-style: italic;
+    margin-bottom: 30px;
+    max-width: 1000px;
+}
+
+.content20 button {
+    background-color: #EDEDED;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    color: #000;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.content20 button:hover {
+    background-color: #CCCCCC;
+}
+
+.content21, .content22 {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 20px;
+    margin-top: 50px;
+}
+
+.content21 {
+    left: 0;
+}
+
+.content22 {
+    right: 0;
+}
+
+.content21 img:first-child, 
+.content22 img:first-child {
+    position: relative;
+}
+
+.content21 img:last-child, 
+.content22 img:last-child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.content21 img:first-child, 
+.content22 img:first-child {
+    width: 50px;
+    height: 50px;
+}
+
+.content21 img:last-child, 
+.content22 img:last-child {
+    width: 20px;
+}
+
+/* Responsive styles for mobile and tablets */
+@media only screen and (max-width: 768px) {
+    .divcontainer6 {
+        margin-top: 100px;
+        padding: 20px 0;
+        height: auto; /* Allow height to adjust automatically */
+        flex-direction: column;
+    }
+
+    .content20 h2 {
+        font-size: 32px; /* Smaller heading size for mobile */
+        -webkit-text-stroke: 0.3px white; /* Adjust stroke */
+    }
+
+    .content20 img {
+        width: 150px; /* Smaller image for mobile */
+    }
+
+    .content20 p {
+        font-size: 18px; /* Smaller font size */
+        max-width: 90vw; /* Adjust width for smaller screens */
+    }
+
+    .content20 button {
+        padding: 8px 20px; /* Adjust button padding */
+        font-size: 14px;
+    }
+
+    .content21, .content22 {
+        display: none; /* Hide arrows on small screens for simplicity */
+    }
+}
+
+/* Responsive styles for larger tablets and smaller desktops */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .divcontainer6 {
+        margin-top: 150px;
+        padding: 30px 0;
+        height: 70vh; /* Adjust height for larger tablets */
+        flex-direction: column;
+    }
+
+    .content20 h2 {
+        font-size: 36px; /* Adjust heading size */
+    }
+
+    .content20 img {
+        width: 180px;
+    }
+
+    .content20 p {
+        font-size: 20px;
+        max-width: 90vw; /* Slightly reduce width */
+    }
+
+    .content20 button {
+        padding: 9px 25px; /* Adjust button padding */
+        font-size: 15px;
+    }
+
+    .content21 img:first-child, 
+    .content22 img:first-child {
+        width: 40px; /* Adjust size of ellipses */
+        height: 40px;
+    }
+
+    .content21 img:last-child, 
+    .content22 img:last-child {
+        width: 16px; /* Adjust size of arrows */
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .divcontainer6 {
+        margin-top: 100px;
+        padding: 15px 0;
+        height: auto; /* Sesuaikan tinggi secara otomatis */
+        flex-direction: column;
+    }
+
+    .content20 h2 {
+        font-size: 28px; /* Ukuran heading lebih kecil */
+        -webkit-text-stroke: 0.3px white; /* Sesuaikan stroke */
+    }
+
+    .content20 img {
+        width: 140px; /* Ukuran gambar lebih kecil */
+    }
+
+    .content20 p {
+        font-size: 18px; /* Ukuran font lebih kecil */
+        max-width: 90vw; /* Lebar teks yang lebih kecil */
+    }
+
+    .content20 button {
+        padding: 7px 20px; /* Sesuaikan padding tombol */
+        font-size: 14px;
+    }
+
+    .content21, .content22 {
+        display: none; /* Sembunyikan panah untuk ukuran layar kecil */
+    }
+}
+
+/* Style umum */
+.container-body4 {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #1E3E5A;
+    padding: 30px;
+    width: 1000px;
+    margin: 40px auto 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.garishitam {
+    margin-right: 15px;
+}
+
+.content11 {
+    position: absolute;
+    top: -20px;
+    left: -25px;
+    padding: 10px;
+}
+
+.content11 img {
+    width: 60px;
+    height: auto;
+}
+
+.content12 {
+    margin-left: 20px;
+}
+
+.content12 h3 {
+    margin: 0;
+    font-size: 1.4em;
+    font-weight: bold;
+    max-width: 245px;
+    color: white;
+}
+
+.content13 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.content13 input {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    width: 400px;
+    font-size: 1em;
+}
+
+.content13 p {
+    margin: 5px;
+    font-size: 0.9em;
+    color: #D9E3EC;
+}
+
+.content13 a {
+    color: #D9E3EC;
+    text-decoration: underline;
+}
+
+.content14 {
+    display: block;
+    gap: 20px;
+}
+
+.content14 button {
+    background-color: #FF8B3E;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin: 8px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.content14 button:hover {
+    background-color: #FF7A2E; /* Optional hover color change */
+}
+
+.blue-line-wrapper {
+    background-color: #cdc2a5;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: -30px;
+}
+
+.blue-line-wrapper img {
+    max-width: 1100px;
+}
+
+/* Responsif untuk tablet (max-width: 1024px) */
+@media only screen and (max-width: 1024px) {
+    .container-body4 {
+        flex-direction: column;
+        padding: 20px;
+        width: 700px;
+    }
+
+    .content12 {
+        margin-left: 0;
+    }
+
+    .garishitam{
+        width: 0.7px;
+        transform: rotate(90deg);
+    }
+    .content12 h3 {
+        font-size: 1.2em;
+        max-width: none;
+        text-align: center;
+    }
+
+    .content13 input {
+        width: 300px;
+    }
+
+    .content14 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .content14 button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .blue-line-wrapper img {
+        max-width: 800px;
+    }
+}
+
+/* Responsif untuk mobile (max-width: 768px) */
+@media only screen and (max-width: 768px) {
+    .container-body4 {
+        flex-direction: column;
+        padding: 20px;
+        width: 430px;
+    }
+
+    .content11 {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-bottom: 20px;
+    }
+
+    .content11 img {
+        width: 50px;
+    }
+
+    .content12 h3 {
+        font-size: 1.1em;
+        text-align: center;
+    }
+
+    .content13 input {
+        width: 100%;
+        font-size: 0.9em;
+    }
+
+    .content14 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .content14 button {
+        width: 100%;
+    }
+
+    .blue-line-wrapper img {
+        max-width: 100%;
+    }
+}
+
+/* Responsif untuk layar besar (min-width: 1200px) */
+@media only screen and (min-width: 1200px) {
+    .container-body4 {
+        max-width: 1400px;
+    }
+
+    .content12 h3 {
+        font-size: 1.6em;
+    }
+
+    .content13 input {
+        width: 500px;
+    }
+
+    .blue-line-wrapper img {
+        max-width: 1400px;
+    }
+}
+
+/* Responsif untuk layar HP (max-width: 480px) */
+@media only screen and (max-width: 480px) {
+    .container-body4 {
+        flex-direction: column;
+        padding: 15px;
+        width: 320px;
+    }
+
+    .content11 {
+        top: 0;
+        left: 0;
+        margin-bottom: 15px;
+    }
+
+    .content11 img {
+        width: 40px;
+    }
+
+    .content12 h3 {
+        font-size: 1em;
+        text-align: center;
+    }
+
+    .content13 input {
+        width: 100%;
+        font-size: 0.85em;
+    }
+
+    .content13 p {
+        font-size: 0.8em;
+    }
+
+    .content14 button {
+        width: 100%;
+        font-size: 0.9em;
+        padding: 8px 16px;
+    }
+
+    .blue-line-wrapper img {
+        max-width: 100%;
+    }
+}
+
+/* Responsif untuk layar kecil (max-width: 384px) */
+@media only screen and (max-width: 384px) {
+    .container-body4 {
+        flex-direction: column;
+        padding: 10px;
+        width: 250px;
+    }
+
+    .content11 {
+        top: 0;
+        left: 0;
+        margin-bottom: 10px;
+    }
+
+    .content11 img {
+        width: 35px;
+    }
+
+    .content12 h3 {
+        font-size: 0.9em;
+        text-align: center;
+    }
+
+    .content13 input {
+        width: 100%;
+        font-size: 0.8em;
+    }
+
+    .content13 p {
+        font-size: 0.75em;
+    }
+
+    .content14 button {
+        width: 100%;
+        font-size: 0.85em;
+        padding: 8px 14px;
+    }
+
+    .blue-line-wrapper img {
+        max-width: 100%;
+    }
+}
+
+/* General Styles for larger screens */
+.container-body5 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #E1D7C6; 
+    padding: 50px 0;
+    position: relative;
+    width: 100%;
+    height: 40vh;
+}
+
+.content15 {
+    position: absolute;
+    top: 100px !important;
+    left: 300px !important;
+}
+
+.a {
+    position: absolute;
+    top: -130px !important;
+    left: 630px;
+}
+
+.content15 img {
+    width: 100px;
+    position: absolute;
+}
+
+.content16 {
+    text-align: center;
+}
+
+.content16 h3 {
+    font-size: 24px;
+    font-weight: 900;
+    margin: 5px 0;
+}
+
+.order-button {
+    background-color: #e5e5e5;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.order-button a {
+    text-decoration: none;
+    color: black;
+}
+
+.order-button:hover {
+    background-color: #ccc;
+}
+
+.content17, .content18 {
+    text-align: center;
+    font-weight: bold;
+}
+
+.content17 a:hover, .content18 a:hover {
+    text-decoration: underline;
+}
+
+.content17 p a, .content18 p a {
+    font-size: 18px;
+    margin: 10px 0;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.content19 {
+    text-align: center;
+}
+
+.content19 h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.content19 img {
+    cursor: pointer;
+}
+
+/* Media Query for Tablets (width up to 768px) */
+@media (max-width: 768px) {
+    .container-body5 {
+        flex-direction: column;
+        height: auto;
+        padding: 30px 20px;
+    }
+
+    .content15 {
+        position: relative;
+        top: 0 !important;
+        left: 0 !important;
+        display: flex;
+        justify-content: center;
+    }
+
+    .content15 img {
+        width: 80px;
+        margin: 10px;
+        position: static;
+    }
+
+    .a {
+        top: 0;
+        left: 0;
+    }
+
+    .content16 h3 {
+        font-size: 20px;
+    }
+
+    .order-button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .content17 p, .content18 p {
+        font-size: 16px;
+    }
+
+    .content19 h3 {
+        font-size: 18px;
+    }
+
+    .content19 img {
+        width: 50px;
+    }
+}
+
+/* Media Query for Mobile Devices (width up to 480px) */
+@media (max-width: 480px) {
+    .container-body5 {
+        flex-direction: column;
+        height: auto;
+        padding: 20px 10px;
+    }
+
+    .content15 {
+        position: relative;
+        top: 0 !important;
+        left: 0 !important;
+        display: flex;
+        justify-content: center;
+    }
+
+    .content15 img {
+        width: 60px;
+        margin: 5px;
+        position: static;
+    }
+
+    .a {
+        top: 0;
+        left: 0;
+    }
+
+    .content16 h3 {
+        font-size: 18px;
+    }
+
+    .order-button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .content17 p, .content18 p {
+        font-size: 14px;
+    }
+
+    .content19 h3 {
+        font-size: 16px;
+    }
+
+    .content19 img {
+        width: 40px;
+    }
+}
+
+/* Media Query for larger screens (width above 1024px) */
+@media (min-width: 1024px) {
+    .container-body5 {
+        height: 40vh;
+        padding: 60px 0;
+    }
+
+    .content15 img {
+        width: 120px;
+    }
+
+    .content16 h3 {
+        font-size: 26px;
+    }
+
+    .order-button {
+        font-size: 18px;
+        padding: 12px 24px;
+    }
+
+    .content17 p, .content18 p {
+        font-size: 20px;
+    }
+
+    .content19 h3 {
+        font-size: 22px;
+    }
+
+    .content19 img {
+        width: 60px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .content15 {
+        top: 100px !important;
+        left: 40px !important;
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 5;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 8px;
+    width: 60%;
+    max-width: 900px;
+    text-align: center; /* Center the content */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.close {
+    position: absolute;
+    top: 150px;
+    right: 300px;
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 999999;
+}
+
+.text-container {
+    margin-bottom: 20px; /* Space between text and image */
+}
+
+.modal-img {
+    width: 40%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #001F54;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.btn-container {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Center the button */
+}
+
+.order-btn {
+    background-color: #001F54;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease;
+}
+
+.order-btn a {
+    text-decoration: none;
+    color: white;
+}
+
+.order-btn:hover {
+    background-color: #003f87;
+}
+    </style>
+</head>
+
+<body>
+    <section class="section-navbar">
+        <div class="container-navbar">
+            <div class="judul1">
+                <a href="#" class="btn-navbar"><h4>Donat</h4></a>
+                <a href="#" class="btn-navbar"><h4>Forvarix</h4></a>
+            </div>
+            <div class="burger-icon" onclick="toggleNavbar()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="ul-navbar">
+                <li><a href="#customer-review">Review</a></li>
+                <li><a href="#menu-section">Menu</a></li>
+                <li><a href="#location-section">Lokasi</a></li>
+                <li><a href="#about-section">Tentang</a></li>
+                <li class="Login"><a href="register.html">Login</a></li>
+            </ul>
+        </div>
+    </section>    
+
+    <!-- Video Section -->
+    <section class="body1">
+        <div class="container-body">
+            <div class="content1">
+                <video width="640" height="360" src="/asset/y2mate.com - Motion Graphic Advertising Donut Kalis_1080.mp4" autoplay muted loop playsinline></video>
+            </div>
+            <div class="content2">
+                <h1>Donat Lumer</h1>
+                <h1>By FORVARIX</h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- Store Section -->
+    <section class="sec1">
+        <div class="container-body1" id="location-section">
+            <div class="content3">
+                <img src="/asset/2021-11-01-toko-kue-tanpa-batas-di-batam-ada-donat-lezat-mulai-dari-harga-rp3-000-an.png" alt="Store Image" class="img-container1-1">
+                <img src="/asset/Pinterest-logo 1.png" alt="Logo" class="img-container1-2">
+            </div>
+            <div class="content4">
+                <h2>FIND OUR STORE</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec cursus id leo et blandit. Sed orci leo, semper quis augue vel, imperdiet scelerisque eros.</p>
+                <button>
+                    <a href="#">VIEW <span class="arrow">→</span></a>
+                </button>
+            </div>
+            
+        </div>
+    </section>
+
+
+   <!-- Menu Section -->
+<section class="section3">
+    <div class="container-body2" id="menu-section">
+        <div class="content5">
+            <h2>TASTE OF MENU</h2>
+        </div>
+        <div class="content6 slider" id="imageSlider">
+            <a href="#">
+                <img src="/asset/e1d750c2cad79d06d1fc7cd9a47e9b53 (1).png" alt="">
+            </a>
+            <a href="#">
+                <img src="/asset/9acd9bf0321a9de731cbbbf65b349d2f (1).png" alt="">
+            </a>
+            <a href="#">
+                <img src="/asset/b9c3bcc2f5e71c7720e9a1370c98c315 (1).png" alt="">
+            </a>
+            <a href="#">
+                <img src="/asset/e1d750c2cad79d06d1fc7cd9a47e9b53 (2).png" alt="">
+            </a>
+            <a href="#">
+                <img src="/asset/b9c3bcc2f5e71c7720e9a1370c98c315 (2).png" alt="">
+            </a>
+        </div>
+        <div class="content7">
+            <div class="content7b">
+                <div class="ellipse-container">
+                    <!-- <img src="/asset/Ellipse 1.png" alt="Ellipse Image" class="ellipse"> -->
+                    <div class="arrow-container">
+                        <!-- <img src="asset/Arrow 1.png" alt="Arrow Image" class="arrow"> -->
+                    </div>
+                </div>
+            </div>
+            <div class="content7a">
+                <a href="#" class="menu-button">
+                    View the full menu <span class="arrow">→</span>
+                </a>
+            </div>
+            <div class="content7c">
+                <div class="ellipse-container">
+                    <!-- <img src="/asset/Ellipse 1.png" alt="Ellipse Image" class="ellipse"> -->
+                    <!-- <img src="/asset/Arrow 2.png" alt="Arrow Image" class="arrow"> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- About Us Section -->
+<section>
+    <div class="container-body3" id="about-section">
+        <div class="animated-text">
+            <h2>ABOUT US</h2>
+        </div>
+        <div class="decorative-images">
+            <img class="random-image top-left" src="/asset/5c2ca4871f675632949aced4035dae4c 1.png" alt="">
+            <img class="random-image top-right" src="/asset/f14233c638ae1bb2a3bb44fa3c93aa59-removebg-preview 1.png" alt="">
+            <img class="random-image bottom-center" src="/asset/5a4cd7de4fb8f82dae42334a7abeb399 1.png" alt="">
+        </div>
+
+        <div class="card-wrapper">
+            <a href="#" class="card">
+                <img src="/asset/what-makes-us-us-donuts (1) 1.png" alt="Image 1">
+                <h4>VIBES</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id mollis orci. Nam ut ante ut justo ultrices luctus sed non turpis. Donec bibendum elit ultrices erat euismod,</p>
+            </a>
+            <a href="#" class="card">
+                <img src="/asset/Clip path group (1).png" alt="Image 2">
+                <h4>VIBES</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id mollis orci. Nam ut ante ut justo ultrices luctus sed non turpis. Donec bibendum elit ultrices erat euismod,</p>
+            </a>
+            <a href="#" class="card">
+                <img src="/asset/Clip path group.png" alt="Image 3">
+                <h4>VIBES</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id mollis orci. Nam ut ante ut justo ultrices luctus sed non turpis. Donec bibendum elit ultrices erat euismod,</p>
+            </a>
+        </div>
+
+        <div class="read-more-section">
+            <a href="#" class="read-more-button">Read More</a>
+        </div>        
+    </div>
+</section>
+
+
+    <!-- Customer Section -->
+    <section>
+        <div class="container-body6" id="customer-review">
+            <img src="/asset/Vector (5).png" alt="">
+            <div class="testimonial-slider">
+                <!-- Container for all divcontainer6 elements -->
+                <div class="divcontainer6">
+                    <div class="content20">
+                        <img src="/asset/blank-removebg-preview 1.png" alt="">
+                        <h2>WORDS ON CUSTOMER</h2>
+                        <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id mollis orci. Nam ut ante ut justo ultrices luctus sed non turpis. Donec bibendum elit ultrices erat euismod,”</p>
+                        <button>LOREM</button>
+                    </div>
+                    <div class="content21">
+                        <img src="/asset/Ellipse 1.png" alt="">
+                        <img src="/asset/Arrow 1.png" alt="">
+                    </div>
+                    <div class="content22">
+                        <img src="/asset/Ellipse 2.png" alt="">
+                        <img src="/asset/Arrow 2.png" alt="">
+                    </div>
+                </div>
+                <div class="divcontainer6">
+                    <div class="content20">
+                        <img src="/asset/blank-removebg-preview 1.png" alt="">
+                        <h2>WORDS ON CUSTOMER</h2>
+                        <p>“Praesent vel metus eget augue imperdiet rutrum. Proin tempor mauris nibh, quis tincidunt purus varius ut. Proin eget enim fermentum, ullamcorper mauris quis, mattis orci.”</p>
+                        <button>LOREM</button>
+                    </div>
+                    <div class="content21">
+                        <img src="/asset/Ellipse 1.png" alt="">
+                        <img src="/asset/Arrow 1.png" alt="">
+                    </div>
+                    <div class="content22">
+                        <img src="/asset/Ellipse 2.png" alt="">
+                        <img src="/asset/Arrow 2.png" alt="">
+                    </div>
+                </div>
+                <div class="divcontainer6">
+                    <div class="content20">
+                        <img src="/asset/blank-removebg-preview 1.png" alt="">
+                        <h2>WORDS ON CUSTOMER</h2>
+                        <p>“Sed posuere, dui eget rhoncus consequat, turpis ligula scelerisque nisi, nec bibendum odio nisl a erat. Maecenas non sapien sed urna ultrices dapibus quis nec tellus. ”</p>
+                        <button>LOREM</button>
+                    </div>
+                    <div class="content21">
+                        <img src="/asset/Ellipse 1.png" alt="">
+                        <img src="/asset/Arrow 1.png" alt="">
+                    </div>
+                    <div class="content22">
+                        <img src="/asset/Ellipse 2.png" alt="">
+                        <img src="/asset/Arrow 2.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscribe Section -->
+    <section>
+        <div class="container-body4">
+            <div class="content11">
+                <img src="/asset/images-removebg-preview 1.png" alt="Logo">
+            </div>
+            <div class="content12">
+                <h3>Subscribe to our mailing list to receive news and special offers</h3>
+            </div>
+            <img src="/asset/garis.png" alt="" style="max-width: 1px;" class="garishitam">
+            <div class="content13">
+                <p>Your email address</p>
+                <div class="content14">
+                    <input type="email" id="emailInput" placeholder="Your email address">
+                    <button id="subscribeButton">SUBSCRIBE</button>
+                </div>                
+                <p>By signing up, you agree to Donat FORVARIX <a href="https://www.termsfeed.com/live/e0d8e209-ef32-4033-a32b-f3d7f600cb16">Privacy Policy</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <section>
+        <div class="blue-line-wrapper">
+            <!-- <img src="/asset/garisbiru.png" alt="Blue Line" class="blue-line"> -->
+        </div>
+        <div class="container-body5">
+            <div class="content15">
+                <img src="/asset/botanical-wall-art-background-free-png.png" alt="Decorative Image 1" class="a">
+                <img src="/asset/botanical-wall-art-background-free-png (1).png" alt="Decorative Image 2">
+            </div>
+            <div class="content16">
+                <h3>Donat</h3>
+                <h3>Forvarix</h3>
+                <button class="order-button"><a href="">Order</a></button>
+            </div>
+            <div class="content17">
+                <p><a href="#customer-review">Review</a></p>
+                <p><a href="#location-section">Lokasi</a></p>
+            </div>
+            <div class="content18">
+                <p><a href="#menu-section">Menu</a></p>
+                <p><a href="#about-section">Tentang</a></p>
+            </div>
+            
+            <div class="content19">
+                <h3>Follow us</h3>
+                <a href="https://www.instagram.com/forvarix/" target="_blank">
+                    <img src="/asset/2b58766b2387af43a5f817a60511d840-removebg-preview 1.png" alt="Instagram Icon">
+                </a>
+            </div>
+        </div>
+    </section>
+
+        <!-- Modal Structure -->
+    <div id="menuModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="menuTitle"></h2>
+            <p id="menuDescription"></p>
+            <img id="menuImage" src="" alt="Menu Image" class="modal-img">
+            <button class="order-btn"><a href="https://www.instagram.com/forvarix/">Order Now</a></button>
+        </div>
+    </div>
+
+</body>
+
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Flip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Observer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Draggable.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/MotionPathPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/EaselPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/PixiPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/TextPlugin.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/EasePack.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+
+<script>
+    window.addEventListener('load', function() {
+    // GSAP Plugin Registration
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Video and Text Animation
+    const videoContainer = document.querySelector('.content1');
+    const videoElement = videoContainer ? videoContainer.querySelector('video') : null;
+
+    if (videoElement) {
+        gsap.set(videoElement, { clipPath: "inset(20% 30% 20% 80%)" });
+
+        const videoTimeline = gsap.timeline({
+            defaults: { duration: 1.5, ease: "power2.inOut" }
+        });
+
+        videoTimeline
+            .to(videoElement, { clipPath: "inset(0% 0% 0% 0%)", ease: "expo.inOut" })
+            .to(".content2", { opacity: 1, duration: 0.2, delay: 0.5, ease: "power1.out" }, "-=1");
+
+        gsap.to(videoElement, {
+            opacity: 0,
+            y: -100,
+            scrollTrigger: {
+                trigger: videoContainer,
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+    }
+
+    // Navbar Animation
+    const navbar = document.querySelector('.container-navbar');
+    if (navbar) {
+        gsap.set(navbar, { scale: 0, transformOrigin: "center top" });
+
+        gsap.timeline({
+            delay: 1.5,
+            defaults: { duration: 1, ease: "expo.inOut" }
+        }).to(navbar, { scale: 1 });
+
+        window.addEventListener('scroll', function() {
+            navbar.style.backgroundColor = window.scrollY > 10 ? "white" : "transparent";
+        });
+    }
+
+    // Animations for content3 and content4
+gsap.from('.content3', {
+    scrollTrigger: {
+        trigger: '.content3',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse'
+    },
+    x: '-100%',
+    opacity: 0,
+    duration: 1,
+    ease: 'power2.out'
+});
+
+gsap.from('.content4', {
+    scrollTrigger: {
+        trigger: '.content4',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse'
+    },
+    x: '100%',
+    opacity: 0,
+    duration: 1,
+    ease: 'power2.out'
+});
+
+// GSAP Animation for images in content6
+const images = document.querySelectorAll('.content6 img');
+if (images.length) {
+    images.forEach((img, index) => {
+        const direction = (index % 2 === 0) ? -100 : 100;
+
+        gsap.fromTo(img, 
+            { y: direction, opacity: 0 }, 
+            { 
+                y: 0, 
+                opacity: 1, 
+                duration: 2, 
+                ease: 'power2.out', 
+                delay: index * 0.3,
+                scrollTrigger: {
+                    trigger: img,
+                    start: 'top 80%',
+                    toggleActions: 'play none none none'
+                }
+            }
+        );
+    });
+}
+
+// Modal and Menu Data Setup
+const modal = document.getElementById("menuModal");
+const span = document.getElementsByClassName("close")[0];
+
+const menuData = [
+    { title: "Espresso", description: "A double shot of Intelligentsia's Black Cat espresso.", imgSrc: "/asset/e1d750c2cad79d06d1fc7cd9a47e9b53 (1).png" },
+    { title: "Chocolate Cake Donut", description: "A rich chocolate cake donut, perfect with coffee.", imgSrc: "/asset/9acd9bf0321a9de731cbbbf65b349d2f (1).png" },
+    { title: "Vanilla Bean Glazed", description: "Classic vanilla bean glazed donut.", imgSrc: "/asset/b9c3bcc2f5e71c7720e9a1370c98c315 (1).png" },
+    { title: "Cold Brew Coffee", description: "Smooth cold brew coffee, served over ice.", imgSrc: "/asset/e1d750c2cad79d06d1fc7cd9a47e9b53 (2).png" },
+    { title: "Maple Bacon Donut", description: "A savory and sweet maple bacon donut.", imgSrc: "/asset/b9c3bcc2f5e71c7720e9a1370c98c315 (2).png" }
+];
+
+// Assign initial data-index to each item
+document.querySelectorAll('.slider a').forEach((el, i) => el.setAttribute('data-index', i));
+
+// Event Delegation for Modal Click
+document.querySelector('.slider').addEventListener('click', function(event) {
+    const clickedElement = event.target.closest('a');
+    
+    if (clickedElement) {
+        event.preventDefault();
+        const index = clickedElement.getAttribute('data-index');
+
+        if (index !== null && menuData[index]) {
+            document.getElementById("menuTitle").innerText = menuData[index].title;
+            document.getElementById("menuDescription").innerText = menuData[index].description;
+            document.getElementById("menuImage").src = menuData[index].imgSrc;
+
+            modal.style.display = "block";
+        }
+    }
+});
+
+// Close Modal
+span.onclick = function() {
+    modal.style.display = "none";
+};
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
+
+// Function to slide images smoothly
+function slideRight() {
+    const slider = document.querySelector('.content6');
+    const firstImage = slider.querySelector('a:first-child');
+
+    // Geser slider ke kiri
+    gsap.to(slider, {
+        x: '-300px', // Geser sebesar lebar satu gambar (300px)
+        duration: 1,
+        ease: 'power2.out',
+        onComplete: () => {
+            slider.appendChild(firstImage); // Pindahkan gambar pertama ke akhir
+            gsap.set(slider, { x: 0 }); // Kembalikan posisi slider tanpa animasi
+        }
+    });
+}
+
+// Interval to slide every 4 seconds
+window.setInterval(function() {
+    slideRight();
+}, 4000);
+
+    // Subscribe Section Animation
+    const timeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: '.container-body4',
+            start: 'top 75%',
+            toggleActions: 'play none none reverse',
+        }
+    });
+
+    timeline.from('.content11', { y: -100, opacity: 0, duration: 0.6, ease: 'power2.out' })
+        .from('.content12', { y: -100, opacity: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3')
+        .from('.garishitam', { opacity: 0, height: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3')
+        .from('.content13', { y: -100, opacity: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3')
+        .from('.content14', { x: -100, opacity: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3');
+});
+
+// JavaScript to control the display of divcontainer6 elements as a slideshow
+const slides = document.querySelectorAll('.divcontainer6');
+let currentIndex = 0;
+
+// Function to show the specific slide at a given index
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.style.display = i === index ? 'flex' : 'none';
+    });
+}
+
+// Show the first slide initially
+showSlide(currentIndex);
+
+// Function to go to the next slide
+function nextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    showSlide(currentIndex);
+}
+
+// Function to go to the previous slide
+function prevSlide() {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    showSlide(currentIndex);
+}
+
+// Event listeners for navigation arrows
+const nextButton = document.querySelectorAll('.content22'); // Right arrow
+const prevButton = document.querySelectorAll('.content21'); // Left arrow
+
+// Attach event listeners to all next and previous buttons
+nextButton.forEach(button => button.addEventListener('click', nextSlide));
+prevButton.forEach(button => button.addEventListener('click', prevSlide));
+
+    // Wait until the page is fully loaded
+    window.addEventListener('load', () => {
+        // Register ScrollTrigger with GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate the "ABOUT US" title
+        gsap.from(".animated-text h2", {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".animated-text h2",
+                start: "top 80%", // Animation starts when element is 80% in the viewport
+                toggleActions: "play none none reverse"
+            }
+        });
+
+        // Animate decorative images
+        gsap.from(".random-image", {
+            y: 100,
+            opacity: 0,
+            stagger: 0.2,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".decorative-images",
+                start: "top 80%",
+                toggleActions: "play none none reverse"
+            }
+        });
+
+        // Animate each card
+        gsap.from(".card", {
+            y: 100,
+            opacity: 0,
+            stagger: 0.3,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".card-wrapper",
+                start: "top 80%",
+                toggleActions: "play none none reverse"
+            }
+        });
+
+        // Animate the "Read More" button
+        gsap.from(".read-more-button", {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: ".read-more-section",
+                start: "top 90%",
+                toggleActions: "play none none reverse"
+            }
+        });
+    });
+
+// Wait for the DOM content to load before running animations
+document.addEventListener("DOMContentLoaded", () => {
+    // Target each container individually to create a staggered effect for each testimonial
+    const containers = document.querySelectorAll('.divcontainer6');
+  
+    containers.forEach((container, index) => {
+      // Animate the image in content20 with ScrollTrigger
+      gsap.fromTo(
+        container.querySelector(".content20 img"),
+        { opacity: 0, y: -20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: container.querySelector(".content20 img"),
+            start: "top 80%", // Adjust start point as needed
+            toggleActions: "play none none reverse",
+          }
+        }
+      );
+  
+      // Animate the "WORDS ON CUSTOMER" title
+      gsap.fromTo(
+        container.querySelector("h2"),
+        { opacity: 0, y: -30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.3,
+          scrollTrigger: {
+            trigger: container.querySelector("h2"),
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          }
+        }
+      );
+  
+      // Animate the paragraph
+      gsap.fromTo(
+        container.querySelector("p"),
+        { opacity: 0, y: -30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          delay: 0.6,
+          scrollTrigger: {
+            trigger: container.querySelector("p"),
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          }
+        }
+      );
+  
+      // Animate the button
+      gsap.fromTo(
+        container.querySelector("button"),
+        { opacity: 0, scale: 0.9 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.6,
+          delay: 0.9,
+          scrollTrigger: {
+            trigger: container.querySelector("button"),
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          }
+        }
+      );
+  
+      // Animate content21 arrows
+      gsap.fromTo(
+        container.querySelector(".content21 img"),
+        { opacity: 0, scale: 0 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.4,
+          delay: 1.2,
+          scrollTrigger: {
+            trigger: container.querySelector(".content21 img"),
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          }
+        }
+      );
+  
+      // Animate content22 arrows
+      gsap.fromTo(
+        container.querySelector(".content22 img"),
+        { opacity: 0, scale: 0 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.4,
+          delay: 1.5,
+          scrollTrigger: {
+            trigger: container.querySelector(".content22 img"),
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          }
+        }
+      );
+    });
+  });
+
+  function toggleNavbar() {
+    const navbar = document.querySelector('.ul-navbar');
+    navbar.classList.toggle('show');
+}
+ // Inisialisasi EmailJS
+ emailjs.init("ilPAXaxOMHJDCCSDx");
+
+// Tambahkan event listener untuk tombol subscribe
+document.getElementById('subscribeButton').addEventListener('click', function(event) {
+    event.preventDefault();  // Mencegah reload halaman
+
+    var email = document.getElementById('emailInput').value;
+
+    // Cek apakah email terisi
+    if (!email) {
+        alert('Please enter your email address.');
+        return;
+    }
+
+    // Kirim email dengan emailjs
+    emailjs.send("service_ylsfvml", "template_16td8io", {
+        to_email: email,
+        to_name: "Subscriber"
+    })
+    .then(function(response) {
+        console.log("Email berhasil dikirim!", response.status, response.text);
+        alert('Thank you for subscribing! Please check your email.');
+    }, function(error) {
+        console.error("Gagal mengirim email...", error);
+        alert('Subscription failed. Please try again.');
+    });
+});
+</script>
+
+</html>
